@@ -10,7 +10,7 @@ const Movie = require ("../models/Movie.model.js")
 router.get("/create", (req, res, next) => {
     Celebrity.find()
     .then((allCelebrities)=>{
-        console.log(allCelebrities)
+        //console.log(allCelebrities)
         res.render("movies/new-movie.hbs", {
             allCelebrities
         });
@@ -44,7 +44,7 @@ router.post("/create", (req, res, next) => {
 router.get("/", (req, res, next) => {
     Movie.find()
       .then((allMovies) => {
-        console.log(allMovies);
+        //console.log(allMovies);
         res.render("movies/movies.hbs",
           {
            allMovies
@@ -55,6 +55,21 @@ router.get("/", (req, res, next) => {
       });
   });
   
+//GET "/movies/:id" => Show a specific movie
+
+router.get("/:movieId", (req, res, next)=> {
+    const {movieId} = req.params
+    Movie.findById(movieId)
+    .populate("cast")
+    .then((movieInformation)=> {
+        console.log(movieInformation)
+        res.render ("movies/movie-details.hbs",
+        {movieInformation})
+    })
+    .catch ((err)=> {
+        next(err)
+    })
+})
 
 
 
