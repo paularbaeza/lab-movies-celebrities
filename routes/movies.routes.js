@@ -61,16 +61,29 @@ router.get("/:movieId", (req, res, next)=> {
     const {movieId} = req.params
     Movie.findById(movieId)
     .populate("cast")
-    .then((movieInformation)=> {
-        console.log(movieInformation)
+    .then((movieInfo)=> {
+        //console.log(movieInfo)
         res.render ("movies/movie-details.hbs",
-        {movieInformation})
+        {movieInfo})
     })
     .catch ((err)=> {
         next(err)
     })
 })
 
+
+//POST "/movies/:id/delete" => Delete a specific movie
+
+router.post("/:movieId/delete", (req, res, next)=> {
+    const{movieId} = req.params
+    Movie.findByIdAndDelete(movieId)
+    .then(() => {
+        res.redirect("/movies");
+    })
+    .catch((err)=>{
+        next(err)
+    })
+})
 
 
 
