@@ -1,6 +1,5 @@
 //  Add your code here
 const { Schema, model } = require("mongoose");
-const Celebrity = require("./Celebrity.model");
 
 const celebritySchema = new Schema ({
 name:{
@@ -12,7 +11,7 @@ occupation:{
     required: "true",
     default: "unknown"
 },
-catchphrase:{
+catchPhrase:{
     type: String,
     required: "true"
 }
