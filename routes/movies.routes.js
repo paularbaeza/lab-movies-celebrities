@@ -21,11 +21,40 @@ router.get("/create", (req, res, next) => {
   });
 
 
-
 //POST /"movies/create" => send the data from the form to this route to create the movie and save it to the database
+router.post("/create", (req, res, next) => {
+    const { title, genre, plot, cast } = req.body;
+    Movie.create({
+      title,
+      genre,
+      plot,
+      cast
+    })
+      .then(() => {
+        res.redirect("/movies");
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
 
 
+//GET "/movies" => Show all movies
 
+router.get("/", (req, res, next) => {
+    Movie.find()
+      .then((allMovies) => {
+        console.log(allMovies);
+        res.render("movies/movies.hbs",
+          {
+           allMovies
+          })
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+  
 
 
 
