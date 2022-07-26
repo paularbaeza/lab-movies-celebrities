@@ -9,4 +9,7 @@ router.get("/", (req, res, next) => {
 const celebrityRoutes = require ("./celebrities.routes.js")
 router.use("/celebrities", celebrityRoutes)
 
+const movieRoutes = require ("./movies.routes.js")
+router.use("/movies", movieRoutes)
+
 module.exports = router;

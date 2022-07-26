@@ -8,7 +8,6 @@ name:{
 },
 occupation:{
     type: String,
-    required: "true",
     default: "unknown"
 },
 catchPhrase:{
