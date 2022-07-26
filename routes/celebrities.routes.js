@@ -18,16 +18,27 @@ router.post("/create", (req, res, next) => {
     catchPhrase,
   })
     .then(() => {
-      res.redirect ("/celebrities");
+      res.redirect("/celebrities");
     })
     .catch((err) => {
       next(err);
     });
 });
 
+//GET "/celebrities" => Show all the celebrities
 
-
-
-
+router.get("/", (req, res, next) => {
+  Celebrity.find()
+    .then((allCelebrities) => {
+      console.log(allCelebrities);
+      res.render("celebrities/celebrities.hbs",
+        {
+         allCelebrities
+        })
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 module.exports = router;
