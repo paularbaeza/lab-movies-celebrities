@@ -1,8 +1,10 @@
-<h2>Movie information</h2>
+<div id="movie-details">
+    <h2>Movie information</h2>
+    <div id="each-movie-details">
 <h3>{{movieInfo.title}}</h3>
-<p>Genre: {{movieInfo.genre}}</p>
-<p>Plot: {{movieInfo.plot}}</p>
-<p>Cast:</p>
+<p><b>Genre: </b>{{movieInfo.genre}}</p>
+<p><b>Plot:</b> {{movieInfo.plot}}</p>
+<p><b>Cast:</b></p>
 
 {{#each movieInfo.cast}}
   <ul>
@@ -17,3 +19,5 @@
 </form>
 
 <button><a href="/movies/{{movieInfo._id}}/edit"> Update movie</a></button>
+</div>
+</div>
